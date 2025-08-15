@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <div id="cabecera"></div>
+  <link rel="stylesheet" href="_assets/css/styles.css">
+</head>
+
+<body class="  ">
+
+  <section class="wrapper">
+    
+    <nav id="menu"></nav>
+
+    <div class="content-page">
+
+      <div class="container">
+        <h1>Internal API Example</h1>
+        <input hidden id="ruta" value="/api/categoria/items/64c3d4e5f6a7b8c9d0e11111" />
+        <button id="fetchData">Fetch Data</button>
+        <a href="listadoCat.html"><button id="Categorias">Categorías</button></a>
+        <div id="output"></div>
+        <label for="_id">N° de Identificacion</label>
+        <input type="text" id="_id" /><br/>
+        <label for="nombre">Categoría</label>
+        <input type="text" id="nombre" />
+      </div>
+
+    </div>
+
+    <footer id="piePagina" class="iq-footer" ></footer>
+    
+  </section> <!-- Wrapper End -->
+
+
+  <script src="_assets/js/script2.js"></script> <!-- este muestra como poner los datos en objetos -->
+  <script src="_assets/js/templates.js"></script> <!-- este es para los templates -->
+
+  <!-- Del template -->
+  <!-- Backend Bundle JavaScript -->
+  <script src="_assets/js/plantilla/backend-bundle.min.js"></script>
+  <!-- Table Treeview JavaScript -->
+  <script src="_assets/js/plantilla/table-treeview.js"></script>
+  <!-- app JavaScript -->
+  <script src="_assets/js/plantilla/app.js"></script>
+
+</body>
+
+</html>

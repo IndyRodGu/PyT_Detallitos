@@ -11,6 +11,7 @@ class ItemService {
   async getAllItems(id) {
     return await Item.find();
   }
+  
 
   async getItem(id) {
     return await Item.findById(id);
