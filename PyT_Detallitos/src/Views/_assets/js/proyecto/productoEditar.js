@@ -2,7 +2,7 @@
 const receivedData = localStorage.getItem('sharedData');
 // Se construye la ruta
 const ruta = "/api/producto/items/" + receivedData;
-const ruta2 = "/api/categoria/items/"
+const ruta2 = "/api/categoria/items"
 
 window.addEventListener('load', async () => {
     try {
@@ -17,8 +17,6 @@ window.addEventListener('load', async () => {
         // En caso de que sí se acepte la data
         const data = await response.json();
         console.log(data);
-        // const output = document.getElementById('output');
-        // output.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
 
         const _id = document.getElementById("idProducto");
         _id.value = data['_id'];
@@ -60,9 +58,10 @@ window.addEventListener('load', async () => {
         document.getElementById('output').textContent = 'Failed to fetch data.';
     }
 
+
+
     // Para la lista de categorias
     try {
-      const valor = document.getElementById("categNom").value;
       const respuesta = await fetch(ruta2);
       const datos = await respuesta.json();
 
@@ -74,18 +73,27 @@ window.addEventListener('load', async () => {
         select.appendChild(opcion);
       });
 
-
-      document.getElementById("categorias").value = valor;
     } catch (error) {
       console.error('Error al cargar los datos:', error);
     }
-    
-
 
 });
 
 
-// Enviar el formulario
+
+const valor = "";
+const texto = "";
+const seleccionador = document.getElementById('categorias');
+
+seleccionador.addEventListener("change", () => {
+    valor = seleccionador.value;
+    texto = seleccionador.options[seleccionador.selectedIndex].text;
+    document.getElementById("pru").value = texto;
+  });
+
+
+// Enviar el formulario -------------------------------------------------------------------------------
+
 document.getElementById('modificarProducto').addEventListener('submit', 
     
     async (event) => {
@@ -93,24 +101,27 @@ document.getElementById('modificarProducto').addEventListener('submit',
     event.preventDefault(); // Para evitar que se refresque la página
     
     // Datos
-    
     const _id = document.getElementById("idProducto").value;
     const sku = document.getElementById("sku").value;
     const nombre = document.getElementById("nombre").value;
     const precioUnitario = document.getElementById("precioU").value;
     const stock = document.getElementById("stock").value;
     const proveedorId = document.getElementById("proveedor").value;
-    const categoria = document.getElementById("categoria").value;
-    const categoriaId = document.getElementById("categId").value;
-    const categoriaNombre = document.getElementById("categNom").value;
+    const categorias = document.getElementById("categorias"); // Viene del buscador
+    const categoria = "";
+    const categoriaId = document.getElementById("categId");
+    const categoriaNombre = document.getElementById("categorias");
     const stockSource = document.getElementById("stockSource").value;
     const stockUpdatedAt = document.getElementById("stockUpdate").value;
-    
+
+
+
     // Data a enviar al PUT
     const data = {
         _id, sku, nombre, precioUnitario, stock, proveedorId,
         categoria, categoriaId, categoriaNombre, stockSource, stockUpdatedAt
     }; 
+
 
     try {
         // Se realiza el fetch 

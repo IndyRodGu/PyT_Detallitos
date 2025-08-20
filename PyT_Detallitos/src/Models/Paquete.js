@@ -8,6 +8,7 @@ const ItemSchema = new mongoose.Schema({
   fechaCreacion: { type: Date },
   precioCRC: { type: Number },
   moneda: {type: String },
+  nombreNorm: {type: String },
   
 }, { collection: 'Paquete' }); // Especificar el nombre de la colección
 

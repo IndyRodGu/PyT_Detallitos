@@ -8,7 +8,11 @@ class ItemService {
     return item;
   }
    
-  async getAllItems(opts = {}) {
+  async getAllItems() {
+    return await Item.find();
+  }
+
+  async getAllItems2(opts = {}) {
     const { categoria } = opts;
 
     let filter = {};

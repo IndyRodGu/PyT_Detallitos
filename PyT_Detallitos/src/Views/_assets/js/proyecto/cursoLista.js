@@ -26,45 +26,60 @@ window.addEventListener('load', async () => {
       tabla.appendChild(row);
 
       // Nombre
-      let nombCell = document.createElement('td');
-      nombCell.innerText = data[i]['nombre'] || '';
-      row.appendChild(nombCell);
+      let tituloCell = document.createElement('td');
+      tituloCell.innerText = data[i]['titulo'] || '';
+      row.appendChild(tituloCell);
 
-      // Descripcion
-      let decribCell = document.createElement('td');
-      decribCell.textContent = data[i]['descripcion'] || '';
-      row.appendChild(decribCell);
+      // Contacto
+      let descripCell = document.createElement('td');
+      descripCell.textContent = data[i]['descripcion'] || '';
+      row.appendChild(descripCell);
+
+      // Telefono
+      let precioCell = document.createElement('td');
+      precioCell.textContent = data[i]['precio'] || '';
+      row.appendChild(precioCell);
+
+      // Contacto
+      let cuposCell = document.createElement('td');
+      cuposCell.textContent = data[i]['cupos'] || '';
+      row.appendChild(cuposCell);
+
+      // Contacto
+      let horaCell = document.createElement('td');
+      horaCell.textContent = data[i]['horario'] || '';
+      row.appendChild(horaCell);
 
      
       // Obtener el valor del id
-      let categoriaID = document.createElement("input")
-      categoriaID.type = "hidden";
-      categoriaID.value = data[i]['_id'];
+      let cursoID = document.createElement("input")
+      cursoID.type = "hidden";
+      cursoID.value = data[i]['_id'];
 
       // Botón Editar
       let btn_Editar = document.createElement('input');
-      btn_Editar.id = categoriaID;
+      btn_Editar.id = cursoID;
       btn_Editar.type = "button";
       btn_Editar.value = "Editar";
       btn_Editar.style = botonEdit;
       btn_Editar.onclick =
         function Editar() {
-          const data = categoriaID.value;
+          const data = cursoID.value;
           localStorage.setItem("sharedData", data);
-          location.href = `/editarCategoria`;
+          location.href = `/editarCurso`;
         };
 
       // Botón Eliminar
       let btn_Eliminar = document.createElement('input');
-      btn_Eliminar.id = categoriaID;
+      btn_Eliminar.id = cursoID;
       btn_Eliminar.type = "button";
       btn_Eliminar.value = "Borrar";
       btn_Eliminar.style = botonElim;
       btn_Eliminar.onclick =
         async (event) => {
           event.preventDefault(); // Para evitar que se refresque la página
-          const categ = categoriaID.value;
-          const rutaFinal = "/api/categoria/items/" + categ;
+          const categ = cursoID.value;
+          const rutaFinal = "/api/curso/items/" + categ;
           try {
             // Se realiza el fetch 
             const response = await fetch(rutaFinal, {
@@ -79,7 +94,7 @@ window.addEventListener('load', async () => {
               const result = await response.json();
               console.log('Se ha eliminado correctamente:', result);
               alert('Data borrada!');
-              window.location.href = "/listaCategorias"
+              window.location.href = "/listarCursos"
             } else {
               console.error('Error:', response.statusText);
               alert('Error al borrar la data.');

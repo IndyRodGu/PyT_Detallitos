@@ -31,40 +31,50 @@ window.addEventListener('load', async () => {
       row.appendChild(nombCell);
 
       // Descripcion
-      let decribCell = document.createElement('td');
-      decribCell.textContent = data[i]['descripcion'] || '';
-      row.appendChild(decribCell);
+      let emailCell = document.createElement('td');
+      emailCell.textContent = data[i]['email'] || '';
+      row.appendChild(emailCell);
+
+      // Descripcion
+      let registCell = document.createElement('td');
+      registCell.textContent = data[i]['fechaRegistro'] || '';
+      row.appendChild(registCell);
+
+      // Descripcion
+      let telefCell = document.createElement('td');
+      telefCell.textContent = data[i]['telefono'] || '';
+      row.appendChild(telefCell);
 
      
       // Obtener el valor del id
-      let categoriaID = document.createElement("input")
-      categoriaID.type = "hidden";
-      categoriaID.value = data[i]['_id'];
+      let clienteID = document.createElement("input")
+      clienteID.type = "hidden";
+      clienteID.value = data[i]['_id'];
 
       // Botón Editar
       let btn_Editar = document.createElement('input');
-      btn_Editar.id = categoriaID;
+      btn_Editar.id = clienteID;
       btn_Editar.type = "button";
       btn_Editar.value = "Editar";
       btn_Editar.style = botonEdit;
       btn_Editar.onclick =
         function Editar() {
-          const data = categoriaID.value;
+          const data = clienteID.value;
           localStorage.setItem("sharedData", data);
-          location.href = `/editarCategoria`;
+          location.href = `/editarCliente`;
         };
 
       // Botón Eliminar
       let btn_Eliminar = document.createElement('input');
-      btn_Eliminar.id = categoriaID;
+      btn_Eliminar.id = clienteID;
       btn_Eliminar.type = "button";
       btn_Eliminar.value = "Borrar";
       btn_Eliminar.style = botonElim;
       btn_Eliminar.onclick =
         async (event) => {
           event.preventDefault(); // Para evitar que se refresque la página
-          const categ = categoriaID.value;
-          const rutaFinal = "/api/categoria/items/" + categ;
+          const categ = clienteID.value;
+          const rutaFinal = "/api/cliente/items/" + categ;
           try {
             // Se realiza el fetch 
             const response = await fetch(rutaFinal, {
@@ -79,7 +89,7 @@ window.addEventListener('load', async () => {
               const result = await response.json();
               console.log('Se ha eliminado correctamente:', result);
               alert('Data borrada!');
-              window.location.href = "/listaCategorias"
+              window.location.href = "/listaClientes"
             } else {
               console.error('Error:', response.statusText);
               alert('Error al borrar la data.');

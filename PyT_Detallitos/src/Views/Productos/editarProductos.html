@@ -23,7 +23,10 @@
                         <div class="col-sm-12 col-lg-6">
 
                             <input hidden id="idProducto" />
-
+                            <input hidden id="categoria" />
+                            <input hidden id="categId" />
+                            <input hidden id="categNom" />
+                            
                             <div class="form-group">
                                 <label for="sku">SKU</label><br />
                                 <input class="form-control" type="text" id="sku" />
@@ -51,26 +54,13 @@
 
                         </div>
                         <div class="col-sm-12 col-lg-6">
-
-                            <div class="form-group ">
-                                <label for="categoria">Categoria</label><br />
-                                <input class="form-control" type="text" id="categoria" required/>
-                            </div>
                             
-                            <div hidden class="form-group">
-                                <label for="categId">Id de Categoria</label><br />
-                                <input class="form-control" type="text" id="categId" />
-                            </div>
-
-                            <div hidden class="form-group">
-                                <label for="categNom">Nombre de Categoria</label><br />
-                                <input class="form-control" type="text" id="categNom" />
-                            </div>
-
                             <div class="form-group">
                                 <label for="categorias">Categoria</label><br />
-                                <select class="form-control" id="categorias"  ></select>
+                                <select class="form-control" id="categorias"></select>
                             </div>
+
+                            <input id="pru"/>
 
                             <div class="form-group">
                                 <label for="stockSource">Fuente de Stock</label><br />

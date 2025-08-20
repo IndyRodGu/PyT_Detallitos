@@ -43,7 +43,7 @@ app.use('/api/proveedor', proveedorRoutes);
 const reservaRoutes = require('./Routes/ReservaRoutes.js');
 app.use('/api/reserva', reservaRoutes);
 
-const reviewRoutes = require('./Routes/ReservaRoutes.js');
+const reviewRoutes = require('./Routes/ReviewRoutes.js');
 app.use('/api/review', reviewRoutes);
 
 const usuarioRoutes = require('./Routes/UsuarioRoutes.js');

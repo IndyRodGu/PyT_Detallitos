@@ -29,42 +29,57 @@ window.addEventListener('load', async () => {
       let nombCell = document.createElement('td');
       nombCell.innerText = data[i]['nombre'] || '';
       row.appendChild(nombCell);
-
+      
       // Descripcion
-      let decribCell = document.createElement('td');
-      decribCell.textContent = data[i]['descripcion'] || '';
-      row.appendChild(decribCell);
+      let descripCell = document.createElement('td');
+      descripCell.innerText = data[i]['descripcion'] || '';
+      row.appendChild(descripCell);
+      
+      // Fecha
+      let fechaCCell = document.createElement('td');
+      fechaCCell.innerText = data[i]['fechaCreacion'] || '';
+      row.appendChild(fechaCCell);
+      
+      // Precio
+      let PrecioCell = document.createElement('td');
+      PrecioCell.innerText = data[i]['precioCRC'] || '';
+      row.appendChild(PrecioCell);
 
-     
+      // Precio
+      let monCell = document.createElement('td');
+      monCell.innerText = data[i]['moneda'] || '';
+      row.appendChild(monCell);
+
+      
       // Obtener el valor del id
-      let categoriaID = document.createElement("input")
-      categoriaID.type = "hidden";
-      categoriaID.value = data[i]['_id'];
+      let paqueteID = document.createElement("input")
+      paqueteID.type = "hidden";
+      paqueteID.value = data[i]['_id'];
 
       // Botón Editar
       let btn_Editar = document.createElement('input');
-      btn_Editar.id = categoriaID;
+      btn_Editar.id = paqueteID;
       btn_Editar.type = "button";
       btn_Editar.value = "Editar";
       btn_Editar.style = botonEdit;
       btn_Editar.onclick =
         function Editar() {
-          const data = categoriaID.value;
+          const data = paqueteID.value;
           localStorage.setItem("sharedData", data);
-          location.href = `/editarCategoria`;
+          location.href = `/editarPaquete`;
         };
 
       // Botón Eliminar
       let btn_Eliminar = document.createElement('input');
-      btn_Eliminar.id = categoriaID;
+      btn_Eliminar.id = paqueteID;
       btn_Eliminar.type = "button";
       btn_Eliminar.value = "Borrar";
       btn_Eliminar.style = botonElim;
       btn_Eliminar.onclick =
         async (event) => {
           event.preventDefault(); // Para evitar que se refresque la página
-          const categ = categoriaID.value;
-          const rutaFinal = "/api/categoria/items/" + categ;
+          const categ = paqueteID.value;
+          const rutaFinal = "/api/paquete/items/" + categ;
           try {
             // Se realiza el fetch 
             const response = await fetch(rutaFinal, {
@@ -79,7 +94,7 @@ window.addEventListener('load', async () => {
               const result = await response.json();
               console.log('Se ha eliminado correctamente:', result);
               alert('Data borrada!');
-              window.location.href = "/listaCategorias"
+              window.location.href = "/listaPaquetes"
             } else {
               console.error('Error:', response.statusText);
               alert('Error al borrar la data.');

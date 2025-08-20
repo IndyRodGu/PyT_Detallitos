@@ -1,27 +1,45 @@
-<select id="miSelect"></select>
+Service:
 
-<script>
-  // URL de la API
-  const apiUrl = 'https://api.ejemplo.com/elementos';
+async getItemDetails(id) {
+    if (!mongoose.isValidObjectId(id)) return null;
 
-  // Función para llenar el select
-  async function llenarSelect() {
+    const [doc] = await Item.aggregate([
+      { $match: { _id: new mongoose.Types.ObjectId(id) } },
+      {
+        $lookup: {
+          from: 'Cliente',
+          localField: 'clienteId',
+          foreignField: '_id',
+          as: 'cliente'
+        }
+      },
+      { $unwind: '$cliente' },
+      {
+        $lookup: {
+          from: 'Producto',
+          localField: 'productoId',
+          foreignField: '_id',
+          as: 'producto'
+        }
+      },
+      { $unwind: '$producto' }
+    ]);
+
+    return doc || null;
+  }
+  
+  Controller:
+  
+    async getItemDetails(req, res) {
     try {
-      const respuesta = await fetch(apiUrl);
-      const datos = await respuesta.json();
-
-      const select = document.getElementById('miSelect');
-      datos.forEach((elemento) => {
-        const opcion = document.createElement('option');
-        opcion.value = elemento.id; // Asigna el valor del ID
-        opcion.textContent = elemento.nombre; // Asigna el texto visible
-        select.appendChild(opcion);
-      });
-    } catch (error) {
-      console.error('Error al cargar los datos:', error);
+      const item = await itemService.getItemDetails(req.params.id);
+      if (!item) return res.status(404).json({ error: 'Item not found' });
+      res.json(item);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
     }
   }
-
-  // Llamar a la función
-  llenarSelect();
-</script>
+  
+  Routes:
+  
+  router.get('/items/details/:id', itemController.getItemDetails);

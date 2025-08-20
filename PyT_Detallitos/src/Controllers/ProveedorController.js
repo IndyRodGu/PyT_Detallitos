@@ -14,7 +14,21 @@ class ItemController {
 
 async getAllItems(req, res) {
     try {
-      const items = await itemService.getAllItems({
+      const items = await itemService.getAllItems();
+
+      if (!items || items.length === 0) {
+        return res.status(404).json({ error: 'No se encontraron proveedores' });
+      }
+
+      res.json(items);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+
+  async getAllItems2(req, res) {
+    try {
+      const items = await itemService.getAllItems2({
         categoria: req.query.categoria
       });
 

@@ -24,12 +24,31 @@ class ItemController {
     }
   }
 
+  async getDetails(req, res) {
+      try {
+        const reviews = await itemService.getAllReviewsFull();
+        res.json(reviews);
+      } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+  }
+
   async getItem(req, res) {
     try {
       const item = await itemService.getItem(req.params.id);
       if (!item) {
         return res.status(404).json({ error: 'Item not found' });
       }
+      res.json(item);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+
+  async getItemDetails(req, res) {
+    try {
+      const item = await itemService.getItemDetails(req.params.id);
+      if (!item) return res.status(404).json({ error: 'Item not found' });
       res.json(item);
     } catch (err) {
       res.status(500).json({ error: err.message });
