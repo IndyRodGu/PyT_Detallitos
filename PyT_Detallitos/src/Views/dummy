@@ -1,0 +1,27 @@
+<select id="miSelect"></select>
+
+<script>
+  // URL de la API
+  const apiUrl = 'https://api.ejemplo.com/elementos';
+
+  // Función para llenar el select
+  async function llenarSelect() {
+    try {
+      const respuesta = await fetch(apiUrl);
+      const datos = await respuesta.json();
+
+      const select = document.getElementById('miSelect');
+      datos.forEach((elemento) => {
+        const opcion = document.createElement('option');
+        opcion.value = elemento.id; // Asigna el valor del ID
+        opcion.textContent = elemento.nombre; // Asigna el texto visible
+        select.appendChild(opcion);
+      });
+    } catch (error) {
+      console.error('Error al cargar los datos:', error);
+    }
+  }
+
+  // Llamar a la función
+  llenarSelect();
+</script>

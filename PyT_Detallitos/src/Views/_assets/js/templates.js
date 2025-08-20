@@ -1,7 +1,7 @@
 
+ // TEMPLATES -------------------------------------------------------
 
- // -------------------------------------------------------
-window.addEventListener('load', async () => {
+ window.addEventListener('load', async () => {
 
     // Cabecera de página
     fetch("_assets/templates/header.html")
@@ -11,7 +11,7 @@ window.addEventListener('load', async () => {
         });
 
 
-  // Se llama a la API interna
+    // Se llama a la API interna
     fetch("_assets/templates/menu.html")
         .then(response => response.text())
         .then(data => {
@@ -19,11 +19,12 @@ window.addEventListener('load', async () => {
         });
   
 
-  // Se llama a otro asset
-  fetch("_assets/templates/footer.html")
+    // Se llama a otro asset
+    fetch("_assets/templates/footer.html")
         .then(response => response.text())
         .then(data => {
             document.getElementById('piePagina').innerHTML = data;
         });
+
 
     });

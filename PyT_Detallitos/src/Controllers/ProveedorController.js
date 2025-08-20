@@ -12,13 +12,17 @@ class ItemController {
     }
   }
 
-  async getAllItems(req, res) {
+async getAllItems(req, res) {
     try {
-      const item = await itemService.getAllItems();
-      if (!item) {
-        return res.status(404).json({ error: 'Item not found' });
+      const items = await itemService.getAllItems({
+        categoria: req.query.categoria
+      });
+
+      if (!items || items.length === 0) {
+        return res.status(404).json({ error: 'No se encontraron proveedores' });
       }
-      res.json(item);
+
+      res.json(items);
     } catch (err) {
       res.status(500).json({ error: err.message });
     }

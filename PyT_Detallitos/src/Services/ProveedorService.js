@@ -8,8 +8,13 @@ class ItemService {
     return item;
   }
    
-  async getAllItems(id) {
-    return await Item.find();
+  async getAllItems(opts = {}) {
+    const { categoria } = opts;
+
+    let filter = {};
+    if (categoria) {
+      filter = { categorías: { $in: [categoria] } };
+    }
   }
 
   async getItem(id) {

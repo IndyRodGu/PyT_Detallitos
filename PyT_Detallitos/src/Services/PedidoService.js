@@ -8,8 +8,15 @@ class ItemService {
     return item;
   }
    
-  async getAllItems(id) {
-    return await Item.find();
+  async getAllItems(opts = {}) {
+    const { estado, order = 'desc' } = opts;
+
+    const filter = {};
+    if (estado) filter.estado = estado;
+
+    const direction = String(order).toLowerCase() === 'asc' ? 1 : -1;
+
+    return await Item.find(filter).sort({ fechaPedido: direction });
   }
 
   async getItem(id) {

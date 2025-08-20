@@ -18,10 +18,10 @@ window.addEventListener('load', async () => {
     output.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
 
     const _id = document.getElementById("_id");
-    _id.value = data['_id'];
+    _id.value = data[6]['_id'];
 
     const nombre = document.getElementById("nombre");
-    nombre.value = data['nombre'];
+    nombre.value = data[6]['nombre'];
   } 
   // Si el 
   catch (error) {

@@ -1,8 +1,6 @@
-// src/controllers/itemController.js
 const itemService = require('../Services/CategoriaService');
 
 class ItemController {
-
   async createItem(req, res) {
     try {
       const item = await itemService.createItem(req.body);
@@ -35,6 +33,16 @@ class ItemController {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async getItemByNombre(req, res) {
+    try {
+      const item = await itemService.getItemByNombre(req.params.nombre);
+      if (!item) return res.status(404).json({ error: 'Item not found' });
+      res.json(item);
+    } catch (err) { res.status(500).json({ error: err.message }); }
+  }
+
+
 
   async updateItem(req, res) {
     try {

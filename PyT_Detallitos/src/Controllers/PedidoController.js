@@ -14,7 +14,10 @@ class ItemController {
 
   async getAllItems(req, res) {
     try {
-      const item = await itemService.getAllItems();
+      const item = await itemService.getAllItems({
+        estado: req.query.estado,
+        order: req.query.order,
+      });
       if (!item) {
         return res.status(404).json({ error: 'Item not found' });
       }
