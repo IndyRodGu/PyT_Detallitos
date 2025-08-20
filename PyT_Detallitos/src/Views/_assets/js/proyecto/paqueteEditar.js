@@ -65,7 +65,7 @@ document.getElementById('editarCategoria').addEventListener('submit', async (eve
 
     // Data a enviar al PUT
     const data = {
-        _id, descripcion, fechaCreacion, moneda, nombre, nombreNorm, precioCRC
+        _id,  nombre, descripcion, fechaCreacion, precioCRC, moneda, nombreNorm
     }; 
 
     try {
