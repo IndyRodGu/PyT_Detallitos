@@ -1,6 +1,7 @@
 // src/config/db.js
 const mongoose = require('mongoose');
-const url = "mongodb+srv://indyrodg:Password123.@henrygo.ssy6fn5.mongodb.net/DetallitosDB";
+// Cambiar **** por usuario:password
+const url = "mongodb+srv://******:*********.@henrygo.ssy6fn5.mongodb.net/DetallitosDB";
 
 const connectDB = async () => {
   try {
