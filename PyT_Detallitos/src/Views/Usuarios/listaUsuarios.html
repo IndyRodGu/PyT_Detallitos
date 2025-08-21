@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <div id="cabecera"></div>
+  <link rel="stylesheet" href="_assets/css/estilos.css">
+</head>
+
+<body class="  ">
+
+  <section class="wrapper">
+    
+    <!-- Menú -->
+    <nav id="menu"></nav>
+
+    <!--Contenido-->
+    <div class="content-page">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-12">
+
+
+              <!-- Título -->
+              <h4 class="title">Usuarios</h4>
+              <input hidden id="ruta" value="/api/review/detalle/items" />
+              <a href="#" >
+                <button id="agregarProveedor" class="btn btn-primary">+ Agregar un Usuario</button>
+              </a>
+              <br/> <br/>
+
+              <!-- Tabla -->
+              <div class="card">
+                <div class="table-responsive">
+                  <table class="table m-10" id="tabla-productos">
+                    <thead class ="table-info">
+                        <tr>
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Calificacion</th>
+                            <th scope="col">Comentario</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pie de Página -->
+    <footer id="piePagina" class="iq-footer" ></footer>
+    
+  </section> <!-- Wrapper End -->
+
+
+  <!-- <script src="_assets/js/script2.js"></script> <!-- este muestra como poner los datos en objetos -->
+  
+  <!-- JAVASCRIPTS --------------------------------------------------------------------> 
+  <!-- Para agregar datos -->
+  <script src="_assets/js/proyecto/usuarioLista.js"></script> 
+  <!-- Para ingresar todos los datos de templates -->
+  <script src="_assets/js/templates.js"></script> <!-- este es para los templates -->
+  <!-- Para funciones generales-->
+  <script src="_assets/js/funciones.js"></script> <!-- este es para los templates -->
+  <!-- Backend Bundle JavaScript -->
+  <script src="_assets/js/plantilla/backend-bundle.min.js"></script>
+  <!-- Table Treeview JavaScript -->
+  <script src="_assets/js/plantilla/table-treeview.js"></script>
+  <!-- app JavaScript -->
+  <script src="_assets/js/plantilla/app.js"></script>
+
+</body>
+
+</html>

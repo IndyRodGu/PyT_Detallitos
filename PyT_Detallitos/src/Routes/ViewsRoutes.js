@@ -147,13 +147,13 @@ router.get('/editarReview', (req, res) => {
 
 // Usuarios ---------------------------------------------------------------------
 router.get('/listaUsuarios', (req, res) => {
-  res.sendFile(path.join(__dirname, '../Views', '/Usuarios/listaReviews.html'));
+  res.sendFile(path.join(__dirname, '../Views', '/Usuarios/listaUsuarios.html'));
 });
 router.get('/agregarUsuario', (req, res) => {
-  res.sendFile(path.join(__dirname, '../Views', '/Usuarios/agregarReviews.html'));
+  res.sendFile(path.join(__dirname, '../Views', '/Usuarios/agregarUsuario.html'));
 });
 router.get('/editarUsuarios', (req, res) => {
-  res.sendFile(path.join(__dirname, '../Views', '/Usuarios/editarReviews.html'));
+  res.sendFile(path.join(__dirname, '../Views', '/Usuarios/editarUsuario.html'));
 });
 
 
